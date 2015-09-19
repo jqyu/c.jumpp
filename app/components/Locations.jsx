@@ -71,7 +71,7 @@ class Locations extends React.Page {
                     return (
                       <List.Item
                         after={listingNumber(key)}
-                        wrapper={<Button chromeless onTap={() => this.router().transitionTo('location', {}, {location_id: business['.key']}}/>}>
+                        wrapper={<Button chromeless onTap={() => this.router().transitionTo('location', {}, {location_id: business['.key']})}/>}>
                         test
                         <div>{business.name}</div>
                       </List.Item>
