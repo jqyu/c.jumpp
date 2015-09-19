@@ -36,13 +36,23 @@ var placeholders = [
 
 class Home extends React.Component {
   state = {
-    placeholder: placeholders[Math.floor(Math.random() * 2)]
+    placeholder: placeholders[Math.floor(Math.random() * 2)],
+    disableScroll: false
+  }
+
+  disableScroll(val) {
+    this.setState({
+      disableScroll: val
+    });
   }
   
   render() {
     return (
       <div style={styles.self}>
-        <NestedViewList {...this.props.viewListProps}>
+        <NestedViewList
+          {...this.props.viewListProps}
+          disableScroll={this.state.disableScroll}
+          >
           <View>
             <div style={styles.welcome}>
               what are you in the mood for?
@@ -60,7 +70,9 @@ class Home extends React.Component {
 
           </View>
 
-          {this.props.child()}
+          {this.props.child({
+            disableParentViewList: this.disableScroll 
+          })}
         </NestedViewList>
 
         <Logo onTap={() => this.router().transitionTo('home')} large={!this.props.child()} />

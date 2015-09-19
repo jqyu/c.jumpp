@@ -1,13 +1,25 @@
-import { React, NestedListView, View } from 'reapp-kit';
+import { React, NestedViewList, View } from 'reapp-kit';
+
+import Firebase from 'firebase';
+import ReactFireMixin from 'reactfire';
+
+import reactMixin from 'react-mixin';
 
 var styles = {
 
 };
 
-class Location extends React.Page {
+class Location extends React.Component {
+
+  componentWillMount() {
+  }
   
   render() {
-    return (<div />);
+    return (
+      <View {...this.props}>
+        hey this is a test
+      </View>
+    );
   }
 };
 

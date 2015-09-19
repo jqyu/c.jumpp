@@ -15,16 +15,15 @@ var styles = {
     left: 0,
     right: 0,
     bottom: '50%',
-    backgroundColor: '#ddd',
     opacity: 0.6
   },
 
   listings: {
     position: 'absolute',
-    top: '50%',
     bottom: 0,
     left: 0,
     right: 0,
+    top: '50%',
     overflow: 'auto'
   },
 
@@ -49,6 +48,10 @@ function listingNumber(n) {
 
 class Locations extends React.Page {
 
+  state = {
+    nestedViewIndex: 1
+  }
+
   componentWillMount() {
     this.ref = new Firebase('https://jumpp.firebaseio.com/business');
     this.bindAsArray(this.ref.limitToLast(50), 'businesses');
@@ -57,7 +60,15 @@ class Locations extends React.Page {
   render() {
     return (
       <View {...this.props}>
-        <NestedViewList>
+        <NestedViewList
+        {...this.routedViewListProps({
+            onViewEntered: i => {
+              this.props.disableParentViewList(i > 0);
+              this.setState({ nestedViewIndex: i })
+            }
+         })}
+        onViewEntering={i => this.setState({ nestedViewIndex: i })}>
+      
           <View>
             <div style={styles.map}>
               <NumberedMap listings={this.state && this.state.businesses && this.state.businesses.map((business, key) => ({ key, loc: business.location}))}/>          
@@ -70,7 +81,7 @@ class Locations extends React.Page {
                   this.state.businesses.map((business, key) => {
                     return (
                       <List.Item
-                        after={listingNumber(key)}
+                        after={listingNumber(key+1)}
                         wrapper={<Button chromeless onTap={() => this.router().transitionTo('location', {}, {location_id: business['.key']})}/>}>
                         test
                         <div>{business.name}</div>
