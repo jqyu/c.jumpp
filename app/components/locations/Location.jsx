@@ -70,7 +70,7 @@ class Location extends React.Page {
           from='bottom'
           open={!!this.state.activeItem}
           >
-          <MenuItem item={this.state.activeItem} close={() => this.selectItem(null)}/>
+          <MenuItem fbref={this.ref} item={this.state.activeItem} close={() => this.selectItem(null)}/>
         </Drawer>
       </View>
     );

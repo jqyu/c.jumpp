@@ -47,15 +47,28 @@ export default {
     fontStyle: 'italic'
   },
 
+  bigPrice: {
+    margin: '48px 0',
+    letterSpacing: '0.1em',
+    paddingLeft: '0.1em',
+    textAlign: 'center',
+    fontSize: '30px',
+    fontStyle: 'italic',
+    fontWeight: 'normal',
+    lineHeight: '72px',
+    borderTop: '1px solid #FF00C3',
+    borderBottom: '1px solid #FF00C3',
+    color: '#FF00C3'
+  },
+
   menuTitle: {
-    margin: '24px 0px',
+    margin: '24px 0 0',
     textTransform: 'uppercase',
     letterSpacing: '0.4em',
     fontSize: '10px',
     color: '#999',
     textAlign: 'center',
-    border: '1px solid #ddd',
-    borderWidth: '1px 0px'
+    borderTop: '1px solid #ddd',
   }
 
 };
