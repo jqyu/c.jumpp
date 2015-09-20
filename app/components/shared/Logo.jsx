@@ -7,16 +7,16 @@ var styles = {
 
   self: {
     position: 'absolute',
-    top: '0',
-    left: '0',
-    right: '0',
+    top: 0,
+    left: 0,
+    right: 0,
     textAlign: 'center',
     zIndex: 2,
     fontFamily: 'serif', 
     fontWeight: 'bold',
     fontStyle: 'italic',
     fontSize: '60px',
-    lineHeight: '100px',
+    lineHeight: '140px',
     color: '#00FFBB'
   }
 
@@ -29,7 +29,7 @@ var Logo = React.createClass({
   getInitialState() {
     return {
       scale: this.props.large ? 1 : 0.7,
-      translateY: this.props.large ? 80 : 0
+      translateY: this.props.large ? 80 : -40 
     }; 
   },
 
@@ -43,7 +43,7 @@ var Logo = React.createClass({
       this.tweenState('translateY', {
         easing: tweenState.easingTypes.easeInOutQuad,
         duration: 200,
-        endValue: props.large ? 80 : 0
+        endValue: props.large ? 80 : -40 
       });
     }
   },

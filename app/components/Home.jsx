@@ -10,6 +10,16 @@ var styles = {
     fontSize: '16px',
     lineHeight: '24px'
   },
+
+  scrim: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 2,
+    height: '200px',
+    background: 'linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0))'
+  },
   
   welcome: {
     textAlign: 'center',
@@ -74,8 +84,9 @@ class Home extends React.Component {
             disableParentViewList: this.disableScroll 
           })}
         </NestedViewList>
-
-        <Logo onTap={() => this.router().transitionTo('home')} large={!this.props.child()} />
+        
+        <div style={styles.scrim} />
+        <Logo onTap={() => window.history.back()} large={!this.props.child()} />
 
       </div>
     );

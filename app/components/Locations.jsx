@@ -15,7 +15,7 @@ var styles = {
     left: 0,
     right: 0,
     bottom: '50%',
-    opacity: 0.6
+    opacity: 0.2
   },
 
   listings: {
@@ -49,7 +49,14 @@ function listingNumber(n) {
 class Locations extends React.Page {
 
   state = {
-    nestedViewIndex: 1
+    nestedViewIndex: 1,
+    disableScroll: false
+  }
+
+  disableScroll(val) {
+    this.setState({
+      disableScroll: val
+    });
   }
 
   componentWillMount() {
@@ -61,13 +68,15 @@ class Locations extends React.Page {
     return (
       <View {...this.props}>
         <NestedViewList
-        {...this.routedViewListProps({
+          {...this.routedViewListProps({
             onViewEntered: i => {
               this.props.disableParentViewList(i > 0);
               this.setState({ nestedViewIndex: i })
             }
-         })}
-        onViewEntering={i => this.setState({ nestedViewIndex: i })}>
+          })}
+          onViewEntering={i => this.setState({ nestedViewIndex: i })}
+          disableScroll={this.state.disableScroll}
+          >
       
           <View>
             <div style={styles.map}>
@@ -93,7 +102,9 @@ class Locations extends React.Page {
             </div>
           </View>
 
-          {this.childRouteHandler()}
+          {this.childRouteHandler({
+            disableParentViewList: this.disableScroll                          
+          })}
 
         </NestedViewList>
       </View>
