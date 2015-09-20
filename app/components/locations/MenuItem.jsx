@@ -25,11 +25,19 @@ class MenuItem extends React.Component {
       order: this.props.fbref.child('orders')
         .push({
           items,
-          progress: 0,
+          progress: 1,
           timestamp: +Date.now(),
           userID: '-Jz_6nMp2oX292Lka_m1'
         })
     });
+  }
+
+  finished() {
+    this.state.order.remove();
+    this.setState({
+      order: null
+    });
+    this.props.close();
   }
 
   render() {
@@ -41,7 +49,7 @@ class MenuItem extends React.Component {
       <View>
         <div style={styles.info}>
           { this.state.order ? 
-            <Order {...this.props} order={this.state.order}/> :
+            <Order {...this.props} order={this.state.order} finished={() => this.finished()}/> :
             <Checkout {...this.props} order={() => this.order()}/> }
         </div>
         <div style={coverStyle} />

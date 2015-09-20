@@ -5,9 +5,29 @@ import ReactFireMixin from 'reactfire';
 import reactMixin from 'react-mixin';
 import moment from 'moment';
 
+var messages = [
+  '',
+  'pending',
+  'in process',
+  'ready'
+];
+
 var styles = {
   
   status: {
+    margin: '72px 0 24px',
+    textAlign: 'center',
+    color: '#999',
+    fontSize: '14px',
+    letterSpacing: '0.3em'
+  },
+
+  message: {
+    fontSize: '30px',
+    lineHeight: '60px',
+    letterSpacing: '0em',
+    color: '#000',
+    fontStyle: 'italic'
 
   },
   
@@ -28,13 +48,17 @@ class Order extends React.Component {
   render() {
     return (
       <div>
-        <p>
-          hey u no what fuk off && die
-          <h1>{this.state.order.process}</h1>
-        </p>
-        <Button>
-          Received
+        <div style={styles.status}>
+          ORDER STATUS
+          <div style={styles.message}>
+            {messages[this.state.order.progress]}
+          </div>
+        </div>
+        { (this.state.order.progress > 2) && 
+        <Button onTap={this.props.finished}>
+          Finished
         </Button>
+        }
         <p style={styles.date}>
           ordered at {moment(this.state.order.timestamp).format('h:mm a, MMMM DD YYYY')}
         </p>
