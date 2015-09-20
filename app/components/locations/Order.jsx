@@ -9,7 +9,7 @@ var styles = {
   
   status: {
 
-  }
+  },
   
   date: {
     textAlign: 'center',
