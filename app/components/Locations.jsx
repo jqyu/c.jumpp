@@ -92,7 +92,7 @@ class Locations extends React.Page {
                       <List.Item
                         title={business.name}
                         after={listingNumber(key+1)}
-                        wrapper={<Button chromeless onTap={() => this.router().transitionTo('location', {}, {location_id: business['.key']})}/>}>
+                        wrapper={<Button chromeless onTap={() => this.router().transitionTo('location', {id: business['.key']})}/>}>
                         {business.description || <span />}
                       </List.Item>
                     );  
@@ -103,7 +103,7 @@ class Locations extends React.Page {
           </View>
 
           {this.childRouteHandler({
-            disableParentViewList: this.disableScroll                          
+            disableParentViewList: this.disableScroll
           })}
 
         </NestedViewList>

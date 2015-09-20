@@ -4,6 +4,8 @@ import ReactFireMixin from 'reactfire';
 
 import reactMixin from 'react-mixin';
 
+import moment from 'moment';
+
 import ListPrice from './shared/ListPrice';
 
 var styles = {
@@ -51,8 +53,9 @@ class History extends React.Page {
                 console.log(order);
                 return (
                   <List.Item
+                    title={order.name}
                     after={<ListPrice amount={order.cost} />}>
-                    okay so the item is going to go here
+                    {`${moment(order.timestamp).format('MM/DD/YY h:mma')} at ${order.business}`}
                   </List.Item>
                 );
               })

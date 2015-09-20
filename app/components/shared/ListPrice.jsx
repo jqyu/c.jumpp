@@ -17,7 +17,6 @@ var styles = {
 class ListPrice extends React.Component {
 
   render() {
-    console.log(this.props.amount);
     return (
       <div style={styles.self}>
         {'$' + this.props.amount.toFixed(2)}

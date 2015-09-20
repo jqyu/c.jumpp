@@ -13,6 +13,7 @@
   "dependencies": {
     "firebase": "^2.2.9",
     "google-maps": "^3.1.0",
+    "moment": "^2.10.6",
     "react": "0.13.2",
     "react-mixin": "^3.0.0",
     "react-tween-state": "^0.1.3",
