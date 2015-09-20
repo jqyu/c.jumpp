@@ -25,7 +25,7 @@ class MenuItem extends React.Component {
       order: this.props.fbref.child('orders')
         .push({
           items,
-          progress: 1,
+          progress: 0,
           timestamp: +Date.now(),
           userID: '-Jz_6nMp2oX292Lka_m1'
         })

@@ -6,7 +6,6 @@ import reactMixin from 'react-mixin';
 import moment from 'moment';
 
 var messages = [
-  '',
   'pending',
   'in process',
   'ready'
@@ -54,7 +53,7 @@ class Order extends React.Component {
             {messages[this.state.order.progress]}
           </div>
         </div>
-        { (this.state.order.progress > 2) && 
+        { (this.state.order.progress > 1) && 
         <Button onTap={this.props.finished}>
           Finished
         </Button>
