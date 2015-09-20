@@ -24,26 +24,27 @@ class NumberedMap extends React.Component {
     var count = 0;
     objs.forEach(obj => {
       var key = obj.key;
+      if (!obj.loc) return;
       var loc = obj.loc.split(',');
       var lat = parseInt(loc[0], 10);
       var lng = parseInt(loc[1], 10);
-      var pos = new google.maps.LatLng(lat, lng)
+      if (isNaN(lat) || isNaN(lng)) return;
       lats += lat;
       lngs += lng;
       count += 1;
+      var pos = new google.maps.LatLng(lat, lng)
       if (!this.marks[key])
         this.marks[key] = new google.maps.Marker({
           map: this.map,
           position: pos,
           label: ''+(key+1)
         });
-      else {
+      else
         this.marks[key].setPosition(pos);
-      }
     });
     if (!count) return;
-    var pos = new google.maps.LatLng(lats/count, lngs/count);
-    this.map.panTo(pos); 
+    var p = new google.maps.LatLng(lats/count, lngs/count);
+    this.map.panTo(p);
   }
 
   componentDidMount() {
@@ -51,7 +52,7 @@ class NumberedMap extends React.Component {
       // makes google api accessible to later calls
       google = g;
       var mapOptions = {
-        zoom: 3,
+        zoom: 9,
         center: new google.maps.LatLng(-37.805723, 144.985360),
         mapTypeControl: false
       }
@@ -61,7 +62,7 @@ class NumberedMap extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    this.addMarkers(this.props.listings);
+    this.addMarkers(props.listings);
   }
 
   render() {
