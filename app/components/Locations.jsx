@@ -15,7 +15,7 @@ var styles = {
     left: 0,
     right: 0,
     bottom: '50%',
-    opacity: 0.2
+    opacity: 0.4
   },
 
   listings: {
@@ -75,7 +75,6 @@ class Locations extends React.Page {
             }
           })}
           onViewEntering={i => this.setState({ nestedViewIndex: i })}
-          disableScroll={this.state.disableScroll}
           >
       
           <View>

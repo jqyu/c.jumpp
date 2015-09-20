@@ -5,6 +5,8 @@ import ReactFireMixin from 'reactfire';
 
 import reactMixin from 'react-mixin';
 
+import ListPrice from './shared/ListPrice';
+
 var styles = {
 
   welcome: {
@@ -46,10 +48,12 @@ class History extends React.Page {
             {
               this.state &&
               this.state.orders && 
-              this.state.orders.map((order) => {
+              this.state.orders.map(order => {
+                console.log(order);
                 return (
-                  <List.Item>
-                    Cost: {'$'+order.cost+'.00'}
+                  <List.Item
+                    after={<ListPrice amount={order.cost} />}>
+                    okay so the item is going to go here
                   </List.Item>
                 );
               })

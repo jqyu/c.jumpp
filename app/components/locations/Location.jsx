@@ -70,38 +70,29 @@ var styles = {
 class Location extends React.Page {
 
   state = {
-    nestedViewIndex: 2,
-    disableScroll: false
-  }
-
-  disableScroll(val) {
-    this.setState({
-      disableScroll: val
-    });
+    nestedViewIndex: 2
   }
 
   componentWillMount() {
     this.locationId = this.router().getCurrentQuery().location_id;
     this.ref = new Firebase('https://jumpp.firebaseio.com/business/'+this.locationId);
-    this.bindAsObject(this.ref, 'location');
+    this.bindAsObject(this.ref, 'business');
     this.bindAsArray(this.ref.child('menus'), 'items');
   }
   
   render() {
 
     // fuck too late now i just have to keep it
-    var mediaUrl = this.state && this.state.location && this.state.location.mediaUrl;
+    var mediaUrl = this.state && this.state.business && this.state.business.mediaUrl;
     var coverStyle = Object.assign(styles.cover, { backgroundImage: !!mediaUrl ? `url(${mediaUrl})` : 'none' }); 
 
     return (
       <View {...this.props}>
-        <NestedViewList
-          onViewEntering={i => this.setState({ nestedViewIndex: i })}
-          >
+        <NestedViewList>
           <View>
             <div style={styles.info}>
               <p style={styles.blurb}>
-              { this.state && this.state.location && this.state.location.description }
+              { this.state && this.state.business && this.state.business.description }
               </p>
               <h2 style={styles.menuTitle}>
                 menu
@@ -121,7 +112,7 @@ class Location extends React.Page {
               </List>
             </div>
             <div style={coverStyle} />
-            <div style={styles.name}>{this.state && this.state.location && this.state.location.name}</div>
+            <div style={styles.name}>{this.state && this.state.business && this.state.business.name}</div>
           </View>
 
           {this.childRouteHandler()}
