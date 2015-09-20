@@ -1,5 +1,4 @@
-import { React, NestedViewList, View, List } from 'reapp-kit';
-
+import { React, NestedViewList, View, List } from 'reapp-kit'; 
 import Firebase from 'firebase';
 import ReactFireMixin from 'reactfire';
 

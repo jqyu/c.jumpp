@@ -4,7 +4,7 @@ var styles = {
   self: {
     fontFamily: 'sans-serif',
     margin: 0,
-    padding: '0 0 0 12px',
+    padding: 0,
     textAlign: 'right',
     width:'60px',
     height: '60px',

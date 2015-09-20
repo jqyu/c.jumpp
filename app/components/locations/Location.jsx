@@ -5,6 +5,8 @@ import ReactFireMixin from 'reactfire';
 
 import reactMixin from 'react-mixin';
 
+import ListPrice from '../shared/ListPrice';
+
 var styles = {
 
   cover: {
@@ -103,8 +105,11 @@ class Location extends React.Page {
                 this.state.items &&
                 this.state.items.map(item => {
                   return (
-                    <List.Item>
-                      Cost: {console.log(item)}
+                    <List.Item
+                      after={<ListPrice amount={item.price} />}
+                      title={item.name}
+                      >
+                      {item.description}
                     </List.Item>
                   );
                 })

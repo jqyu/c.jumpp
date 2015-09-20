@@ -24,7 +24,8 @@ var styles = {
     left: 0,
     right: 0,
     top: '50%',
-    overflow: 'auto'
+    overflow: 'auto',
+    padding: '24px'
   },
 
   listingIcon: {
@@ -89,10 +90,10 @@ class Locations extends React.Page {
                   this.state.businesses.map((business, key) => {
                     return (
                       <List.Item
+                        title={business.name}
                         after={listingNumber(key+1)}
                         wrapper={<Button chromeless onTap={() => this.router().transitionTo('location', {}, {location_id: business['.key']})}/>}>
-                        test
-                        <div>{business.name}</div>
+                        {business.description || <span />}
                       </List.Item>
                     );  
                   })
